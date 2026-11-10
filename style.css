@@ -1,0 +1,254 @@
+
+:root{
+  --bg:#ecebe7; --surface:#f7f6f3; --ink:#1c1c1a; --mute:#6d6c66; --line:#b9b7ae; --accent:#2f54ff;
+  /* Písmo Abadi (Adobe Fonts) pre nadpisy aj text; system-ui sa použije, kým sa nenačíta alebo ak chýba kód projektu */
+  --h:'abadi','Gill Sans','Gill Sans MT',system-ui,sans-serif; --b:'abadi','Gill Sans','Gill Sans MT',system-ui,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* Tmavý režim podľa nastavenia systému (pokiaľ používateľ nezvolil tému ručne) */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--surface:#1f1f1d;--ink:#eeede8;--mute:#9a9992;--line:#45443f;--accent:#7f95ff;}}
+/* Tmavý režim zvolený tlačidlom v hlavičke (nastavuje script.js) */
+:root[data-theme="dark"]{--bg:#161615;--surface:#1f1f1d;--ink:#eeede8;--mute:#9a9992;--line:#45443f;--accent:#7f95ff;}
+/* ===== ZÁKLAD: reset a globálne štýly ===== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{overflow-x:clip;margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--b);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--h);line-height:1.05;margin:0;letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* Centrovaný kontajner obsahu (max. šírka 1180 px) */
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+/* Spoločné odsadenie všetkých sekcií */
+section{padding:clamp(3.5rem,8vw,6.5rem) 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:700}
+/* Podnadpis / úvodný odsek sekcie */
+.lead{color:var(--mute);max-width:56ch;margin-top:.8rem}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.2rem}
+
+/* ============================================================
+   PLACEHOLDER BOX – sivý box s krížom, nahrádza obrázky (.ph)
+   ============================================================ */
+.ph{position:relative;background:var(--surface);border:1.5px solid var(--line);
+  background-image:linear-gradient(to top right,transparent calc(50% - .75px),var(--line) 50%,transparent calc(50% + .75px)),linear-gradient(to bottom right,transparent calc(50% - .75px),var(--line) 50%,transparent calc(50% + .75px))}
+.ph>span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:.15rem .6rem;font-size:.8rem;color:var(--mute);white-space:nowrap;border:1px solid var(--line)}
+/* Obrázok vyplní celý box a prekryje zástupný kríž; object-fit:cover ho orezáva namiesto naťahovania */
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+
+/* ============================================================
+   TLAČIDLÁ
+   ============================================================ */
+/* Tlačidlo (.btn) a jeho variant .ghost s priehľadným pozadím */
+.btn{font:600 .95rem var(--b);padding:.8rem 1.4rem;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;text-decoration:none;display:inline-block;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+/* Filtračné "pilulky" – stav určuje atribút aria-pressed */
+.chip{font:500 .88rem var(--b);padding:.45rem .95rem;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;border-radius:99px;transition:.15s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .2s}
+header.scrolled{box-shadow:0 6px 20px -12px rgba(0,0,0,.4)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:1rem}
+.logo{font:800 1.2rem var(--h);text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.logo i{width:26px;height:26px;border:2px solid var(--ink);display:block;border-radius:50% 0 50% 0}
+nav{display:flex;gap:1.6rem;align-items:center}
+nav a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--mute);padding:.2rem 0;border-bottom:2px solid transparent}
+nav a:hover,nav a.on{color:var(--ink);border-color:var(--accent)}
+.tools{display:flex;gap:.5rem;align-items:center}
+.tool{font:500 .8rem var(--b);border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:.4rem .7rem;cursor:pointer}
+/* Burger tlačidlo je na desktope skryté, zobrazí sa v mobilnom @media */
+.burger{display:none}
+/* Tenký ukazovateľ čítania pod hlavičkou (šírku nastavuje script.js) */
+#progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{border-top:0;padding-top:clamp(2.5rem,6vw,5rem);position:relative;overflow:hidden}
+.hero-grid{display:block}
+.hero h1{font-size:clamp(2.2rem,8.4vw,7.5rem);font-weight:800}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span b{display:inline-block;font-weight:inherit;transform:translateY(105%);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) b{animation-delay:.12s}
+.hero h1 span:nth-child(3) b{animation-delay:.24s}
+/* Animácia nadpisu v hero – slová vyjazdia zospodu */
+@keyframes up{to{transform:none}}
+.hero .lead{font-size:1.1rem}
+.cta{display:flex;gap:.8rem;margin-top:1.8rem;flex-wrap:wrap}
+/* Zameriavací kríž v hero – polohu mu nastavuje script.js */
+#xhair{position:absolute;inset:0;pointer-events:none;z-index:1}
+#xhair .h,#xhair .v{position:absolute;background:var(--accent);opacity:.55}
+#xhair .h{height:1px;left:0;right:0}
+#xhair .v{width:1px;top:0;bottom:0}
+#coords{position:absolute;font:500 .72rem var(--b);background:var(--accent);color:#fff;padding:.1rem .4rem;transform:translate(10px,10px);white-space:nowrap}
+/* Video pozadie úvodu: video vyplní celú sekciu, cez neho ide tmavý prekryv (zmeň hodnoty .55 / .7 pre svetlejšie či tmavšie pozadie) */
+.hero-bg{position:absolute;inset:0;z-index:0;background:#1a0f1f}
+.hero-bg video{display:block;width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,16,.55),rgba(10,8,16,.5) 45%,rgba(10,8,16,.72))}
+.hero .wrap{position:relative;z-index:2}
+/* Na tmavom pozadí je text vždy svetlý, bez ohľadu na zvolenú tému */
+.hero h1{color:#fff;text-shadow:0 2px 28px rgba(0,0,0,.35)}
+.hero .lead{color:rgba(255,255,255,.86)}
+.hero .btn{background:#fff;color:#111;border-color:#fff}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.hero .btn.ghost:hover{background:#fff;color:#111}
+/* Úvod: text pod nadpisom vľavo, tlačidlá vpravo */
+.hero-sub{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-top:2rem}
+.hero-sub .lead{margin:0;max-width:46ch}
+.hero-sub .cta{margin-top:0}
+/* Bežiaci pás služieb (nekonečný posun, hover ho zastaví). padding-right = medzera, aby bola slučka plynulá */
+.marquee{margin-top:3.5rem;border-block:1px solid rgba(255,255,255,.35);overflow:hidden;padding:.9rem 0;color:rgba(255,255,255,.92);font:500 clamp(1rem,2.4vw,1.25rem) var(--h)}
+.marquee div{display:flex;gap:3rem;padding-right:3rem;width:max-content;animation:slide 30s linear infinite}
+.marquee:hover div{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   PRÁCA
+   ============================================================ */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap}
+/* Mriežka projektov – 12 stĺpcov, prvé dve karty sú široké (6 stĺpcov), ostatné úzke (4 stĺpce) */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.4rem}
+.card{grid-column:span 4;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit;transition:opacity .3s,transform .3s}
+.card:nth-child(1){grid-column:span 6}
+.card:nth-child(2){grid-column:span 6}
+/* Karta s videom má v rohu ikonku prehrávania */
+.card.video .ph::after{content:"▶";position:absolute;right:.8rem;bottom:.8rem;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-size:.9rem;padding-left:2px}
+.card.hide{display:none}
+.card .ph{aspect-ratio:4/3;transition:transform .25s}
+.card:hover .ph{transform:scale(.985)}
+.card:hover h3{color:var(--accent)}
+.card h3{font-size:1.2rem;margin-top:.8rem;transition:color .15s}
+.card small{color:var(--mute);font-size:.9rem}
+/* Okno s detailom projektu */
+dialog{border:1.5px solid var(--ink);background:var(--bg);color:var(--ink);padding:0;width:min(1040px,calc(100% - 2rem));max-height:90vh;overflow:auto}
+dialog::backdrop{background:rgba(10,10,10,.65);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.dl-body{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;padding:1.6rem}
+/* Galéria v okne: veľké médium sa dá posúvať (užitočné pre vysoké návrhy webov) + náhľady pod ním */
+.dl-media{min-width:0}
+.dl-view{border:1.5px solid var(--line);background:var(--surface);max-height:min(72vh,680px);overflow:auto}
+.dl-view img,.dl-view video{display:block;width:100%;height:auto}
+.dl-thumbs{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem}
+.thumb{position:relative;width:64px;height:64px;padding:0;border:2px solid var(--line);background:var(--surface);cursor:pointer;overflow:hidden;opacity:.7;transition:opacity .15s,border-color .15s}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb i{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;color:#fff;background:rgba(0,0,0,.35)}
+.thumb:hover{opacity:1}
+.thumb[aria-current="true"]{border-color:var(--accent);opacity:1}
+.dl-body dl{margin:1.2rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.2rem;font-size:.92rem}
+.dl-body dt{color:var(--mute)}.dl-body dd{margin:0}
+.dl-top{display:flex;justify-content:space-between;padding:.8rem 1.2rem;border-bottom:1px solid var(--line);gap:.5rem}
+
+/* ============================================================
+   SLUŽBY
+   ============================================================ */
+.svc{border-top:1px solid var(--line)}
+.svc details{border-bottom:1px solid var(--line)}
+.svc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;font:700 clamp(1.3rem,2.6vw,1.9rem) var(--h)}
+.svc summary::-webkit-details-marker{display:none}
+.svc summary::after{content:"+";font-weight:500;transition:transform .25s;font-size:1.6rem}
+.svc details[open] summary::after{transform:rotate(45deg)}
+.svc details p{padding:0 0 1.5rem;color:var(--mute);max-width:62ch}
+
+/* ============================================================
+   PROCES
+   ============================================================ */
+/* Layout procesu: ľavý stĺpec = záložky, pravý = obsah kroku */
+.steps{display:grid;grid-template-columns:240px 1fr;gap:2.5rem}
+.tabs{display:flex;flex-direction:column;gap:.4rem}
+.tab{text-align:left;padding:.9rem 1rem;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 1rem var(--b);cursor:pointer;transition:.15s}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{border:1.5px solid var(--line);background:var(--surface);padding:2rem;min-height:240px;display:grid;grid-template-columns:1fr 200px;gap:2rem}
+.panel h3{font-size:1.6rem;margin-bottom:.7rem}
+.panel .ph{aspect-ratio:1}
+.bar-t{height:4px;background:var(--line);margin-top:1.5rem}
+.bar-t i{display:block;height:100%;background:var(--accent);transition:width .4s}
+
+/* ============================================================
+   O MNE
+   ============================================================ */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:3.5rem;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.stat{border-top:2px solid var(--ink);padding-top:.7rem}
+.stat b{font:800 clamp(2rem,4vw,3rem) var(--h);display:block;line-height:1}
+.stat span{color:var(--mute);font-size:.9rem}
+.tools-list{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.6rem}
+.tools-list span{border:1.5px solid var(--line);padding:.3rem .8rem;font-size:.88rem;border-radius:99px}
+
+
+/* ============================================================
+   KONTAKT
+   ============================================================ */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+/* Kontaktné údaje – veľké odkazy pod sebou */
+.links{display:grid;align-self:end}
+.links a{display:flex;flex-direction:column;gap:.2rem;padding:1.3rem 0;border-bottom:1px solid var(--line);text-decoration:none;overflow-wrap:anywhere;font:700 clamp(1.2rem,2.6vw,2rem) var(--h);letter-spacing:-.01em;transition:color .2s,padding .2s}
+.links a:first-child{border-top:1px solid var(--line)}
+.links a span{font:500 .85rem var(--b);color:var(--mute);letter-spacing:0}
+.links a:hover{color:var(--accent);padding-left:.6rem}
+/* Päta a tlačidlo "späť hore" */
+footer{border-top:1px solid var(--line);padding:1.6rem 0;color:var(--mute);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+#top{position:fixed;right:1.2rem;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));z-index:15;opacity:0;pointer-events:none;transition:opacity .2s}
+#top.show{opacity:1;pointer-events:auto}
+
+/* ===== RESPONZIVITA ===== */
+/* Mobil a menšie tablety (do 860 px): jednostĺpcové rozloženie, mobilné menu */
+@media (max-width:860px){
+  .hero-grid,.about,.contact,.steps,.dl-body,.panel{grid-template-columns:1fr}
+  .card,.card:nth-child(5n+1),.card:nth-child(5n+2){grid-column:span 12}
+  .burger{display:inline-block}
+  nav{position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;gap:1rem;display:none}
+  nav.open{display:flex}
+  .tabs{flex-direction:row;overflow-x:auto}
+  .tab{white-space:nowrap}
+  .panel .ph{display:none}
+}
+
+/* Tablet (861–1024 px): užšie medzery, projekty v dvoch stĺpcoch */
+@media (min-width:861px) and (max-width:1024px){
+  .hero-grid{gap:2rem}.about,.contact{gap:2rem}.steps{grid-template-columns:200px 1fr;gap:1.5rem}
+  .panel{grid-template-columns:1fr 150px;padding:1.5rem}
+  .card,.card:nth-child(5n+1),.card:nth-child(5n+2){grid-column:span 6}
+  nav{gap:1.1rem}
+}
+/* Mobil – doplnkové úpravy odsadení, filtrov a okna s detailom */
+@media (max-width:860px){
+  .wrap{width:min(1180px,100% - 2rem)}
+  .sec-head{margin-bottom:1.5rem}
+  .filters{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:.3rem;-webkit-overflow-scrolling:touch}
+  .chip{white-space:nowrap}
+  .about{gap:2rem}.contact{gap:2rem}
+  .hero-grid{gap:2rem}
+  .panel{padding:1.3rem;min-height:0}
+  .dl-body{padding:1.1rem;gap:1.2rem}
+  .dl-view{max-height:60vh}
+  .dl-top{flex-wrap:wrap}
+  dialog{max-height:92vh}
+}
+/* Malé mobily (do 600 px): menšia hlavička, tlačidlá na plnú šírku */
+@media (max-width:600px){
+  .bar{height:60px;gap:.5rem}
+  nav{top:60px}
+  .logo{font-size:1rem}.logo i{width:20px;height:20px}
+  .tools{gap:.3rem}
+  .tool{font-size:.72rem;padding:.4rem .55rem}
+  .cta .btn{flex:1 1 100%;text-align:center}
+  .stats{gap:.6rem}.stat b{font-size:1.8rem}.stat span{font-size:.8rem}
+  .svc summary{padding:1rem 0}
+  .tab{padding:.7rem .8rem;font-size:.92rem}
+  .btn{padding:.85rem 1.2rem}
+  footer .wrap{flex-direction:column;gap:.3rem}
+}
+/* Veľmi úzke displeje (do 380 px) */
+@media (max-width:380px){.logo i{display:none}.tool{padding:.4rem .45rem}}
+/* Dotykové zariadenia: vypnuté hover efekty */
+@media (hover:none){.card:hover .ph{transform:none}.btn:hover{transform:none}}
+/* Ak má používateľ v systéme vypnuté animácie, vypneme ich aj tu */
+@media (prefers-reduced-motion:reduce){.marquee{overflow-x:auto}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero h1 span b{transform:none}}

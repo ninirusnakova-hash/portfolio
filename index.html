@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nina Rusnáková portfolio </title>
+
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/sxw4nuw.css">
+<!-- Všetky štýly sú v súbore style.css -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HLAVIČKA: logo, navigácia, prepínač témy, menu pre mobil ===== -->
+<header id="hdr">
+  <div class="wrap bar">
+    <a ><i></i>Nina Rusnáková</a>
+    <nav id="nav" aria-label="Hlavná navigácia">
+      <a href="#praca">Práca</a><a href="#sluzby">Služby</a><a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="tools">
+      <button class="tool" id="themeBtn" aria-label="Prepnúť tému">Tmavá</button>
+      <button class="tool burger" id="burger" aria-label="Menu" aria-expanded="false">Menu</button>
+    </div>
+  </div>
+  <div id="progress"></div>
+</header>
+
+<!-- ===== HLAVNÝ OBSAH ===== -->
+<main id="top-anchor">
+
+<section class="hero" id="hero">
+
+  <div class="hero-bg" aria-hidden="true">
+    <video src="images/animacia/cubes.mp4" poster="images/animacia/cubes-poster.jpg" autoplay muted loop playsinline></video>
+  </div>
+  <div id="xhair" aria-hidden="true"><div class="h"></div><div class="v"></div><div id="coords">0, 0</div></div>
+  <div class="wrap hero-grid">
+    <h1><span><b>Značky, plagáty</b></span><span><b>a vizuálne systémy,</b></span><span><b>ktoré ostanú v hlave.</b></span></h1>
+    <div class="hero-sub">
+      <p class="lead">Som grafická dizajnérka. Tvorím vizuálnu identitu, plagáty, weby a 3D vizuály pre značky, médiá a kultúrne projekty.</p>
+      <div class="cta">
+        <a class="btn" href="#praca">Pozrieť projekty</a>
+        <a class="btn ghost" href="#kontakt">Napísať mi</a>
+      </div>
+    </div>
+  </div>
+  <!-- Bežiaci pás služieb: slová sa menia v script.js (pole v sekcii "BEŽIACI PÁS SLUŽIEB") -->
+  <div class="wrap marquee"><div id="mq"></div></div>
+</section>
+
+<!-- ===== PROJEKTY: filter + mriežka kariet (obsah sa generuje v script.js z poľa "projects") ===== -->
+<section id="praca">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Vybrané projekty</h2><p class="lead">Klikni na projekt pre detail. Filter mení zobrazenie okamžite.</p></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projektov"></div>
+    </div>
+ 
+      <div class="grid" id="grid">
+        <button class="card" data-year="2026" data-role="Portrétne plagáty, sociálne siete" data-desc="Séria portrétnych plagátov postáv seriálu Materinská láska pre televíziu Doma.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/doma.jpg" alt="Materinská láska pre Doma" loading="lazy" onerror="this.remove()"></div>
+          <h3>Materinská láska pre Doma</h3>
+          <small>Plagáty</small>
+          <template class="gallery">
+            <img src="images/doma/cemre.jpg" alt="Plagát seriálu Materinská láska – Cemre" onerror="this.remove()">
+            <img src="images/doma/murat.jpg" alt="Plagát seriálu Materinská láska – Murat" onerror="this.remove()">
+            <img src="images/doma/nazli.jpg" alt="Plagát seriálu Materinská láska – Nazli" onerror="this.remove()">
+            <img src="images/doma/zeynep.jpg" alt="Plagát seriálu Materinská láska – Zeynep" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="Plagáty, sociálne siete" data-desc="Plagáty k priamym prenosom futbalových zápasov (Chance Liga, LaLiga) pre platformu VOYO.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/voyo.jpg" alt="VOYO – futbalové plagáty" loading="lazy" onerror="this.remove()"></div>
+          <h3>VOYO – futbalové plagáty</h3>
+          <small>Plagáty</small>
+          <template class="gallery">
+            <img src="images/voyo/pardubice-sparta.jpg" alt="Plagát VOYO – Pardubice vs. Sparta Praha" onerror="this.remove()">
+            <img src="images/voyo/real-bilbao.jpg" alt="Plagát VOYO – Real Madrid vs. Athletic Bilbao" onerror="this.remove()">
+            <img src="images/voyo/barcelona-celta.jpg" alt="Plagát VOYO – FC Barcelona vs. Celta Vigo" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="Dizajn zberateľských kartičiek" data-desc="Zberateľské futbalové kartičky Debut Date pre hráčov, ktorí debutujú v sezóne 2026/27.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/debut-date.jpg" alt="Debut Date – kartičky" loading="lazy" onerror="this.remove()"></div>
+          <h3>Debut Date – kartičky</h3>
+          <small>Kartičky</small>
+          <template class="gallery">
+            <img src="images/debut-date/vit-strkon.jpg" alt="Kartička Debut Date – Vít Štrkoň" onerror="this.remove()">
+            <img src="images/debut-date/david-krcik.jpg" alt="Kartička Debut Date – Dávid Krčík" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="Logo, logomanuál, typografia, tlačoviny" data-desc="Dizajn manuál: logo, farebnosť, typografia a komunikačné tlačoviny pre činoherné divadlo Umbra.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/umbra-identita.jpg" alt="Umbra – vizuálna identita" loading="lazy" onerror="this.remove()"></div>
+          <h3>Umbra – vizuálna identita</h3>
+          <small>Branding</small>
+          <template class="gallery">
+            <img src="images/umbra-identita/manual-01.jpg" alt="Dizajn manuál Umbra – titulná strana" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-02.jpg" alt="Základný tvar a varianty loga Umbra" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-03.jpg" alt="Najmenšia veľkosť a farebnosť loga" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-04.jpg" alt="Ochranná zóna loga" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-05.jpg" alt="Typografia v logu a na webe" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-06.jpg" alt="Typografia na tlačoviny" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-07.jpg" alt="Komunikačné tlačoviny – papiernictvo, vizitky, USB" onerror="this.remove()">
+            <img src="images/umbra-identita/manual-08.jpg" alt="Komunikačné tlačoviny – plagát Malé ženy" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="UI dizajn" data-desc="Návrh webu činoherného divadla: úvod, program predstavení a kontakt.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/umbra-web.jpg" alt="Umbra – web divadla" loading="lazy" onerror="this.remove()"></div>
+          <h3>Umbra – web divadla</h3>
+          <small>Web</small>
+          <template class="gallery">
+            <img src="images/umbra-web/web-1.jpg" alt="Návrh webu Umbra – úvodná stránka" onerror="this.remove()">
+            <img src="images/umbra-web/web-2.jpg" alt="Návrh webu Umbra – program" onerror="this.remove()">
+            <img src="images/umbra-web/web-3.jpg" alt="Návrh webu Umbra – kontakt" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="UI dizajn, vizuálny štýl" data-desc="Návrh webu pre streetwearový hudobný festival Rhythm Fest v Bratislave.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/rhythm-fest.jpg" alt="Rhythm Fest – web festivalu" loading="lazy" onerror="this.remove()"></div>
+          <h3>Rhythm Fest – web festivalu</h3>
+          <small>Web</small>
+          <template class="gallery">
+            <img src="images/rhythm-fest/web-1.jpg" alt="Rhythm Fest – úvodná stránka" onerror="this.remove()">
+            <img src="images/rhythm-fest/web-2.jpg" alt="Rhythm Fest – interpreti, lineup a vstupenky" onerror="this.remove()">
+          </template>
+        </button>
+        <button class="card video" data-year="2026" data-role="Animácia, motion dizajn" data-desc="Abstraktná animácia kociek s farebnými odrazmi svetla.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/animacia-kociek.jpg" alt="Animácia kociek" loading="lazy" onerror="this.remove()"></div>
+          <h3>Animácia kociek</h3>
+          <small>Animácia</small>
+          <template class="gallery">
+            <video src="images/animacia/cubes.mp4" poster="images/animacia/cubes-poster.jpg" aria-label="Animácia kociek" muted loop playsinline preload="none"></video>
+          </template>
+        </button>
+        <button class="card" data-year="2026" data-role="3D modelovanie, vizualizácia" data-desc="3D vizualizácia ružových slúchadiel.">
+          <div class="ph"><span>Projekt 2026</span><img src="images/covers/3d.jpg" alt="3D slúchadlá" loading="lazy" onerror="this.remove()"></div>
+          <h3>3D slúchadlá</h3>
+          <small>3D</small>
+          <template class="gallery">
+            <img src="images/3d/sluchadla-celok.jpg" alt="3D slúchadlá – celkový pohľad" onerror="this.remove()">
+            <img src="images/3d/sluchadla-detail.jpg" alt="3D slúchadlá – detail" onerror="this.remove()">
+          </template>
+        </button>
+      </div>
+  </div>
+</section>
+
+<!-- Okno s detailom projektu (otvára sa po kliknutí na kartu) -->
+<dialog id="dlg" aria-labelledby="dlTitle">
+  <div class="dl-top">
+    <div><button class="tool" id="prev">Predošlý</button> <button class="tool" id="next">Ďalší</button></div>
+    <button class="tool" id="close">Zavrieť</button>
+  </div>
+  <div class="dl-body">
+    <!-- Galéria projektu: veľké médium (#dlView) + náhľady (#dlThumbs). Plní ju script.js z <template class="gallery"> v karte -->
+    <div class="dl-media">
+      <div class="dl-view" id="dlView"></div>
+      <div class="dl-thumbs" id="dlThumbs"></div>
+    </div>
+    <div>
+      <h3 id="dlTitle"></h3>
+      <p class="lead" id="dlText"></p>
+      <dl id="dlMeta"></dl>
+      <a class="btn" href="#kontakt" id="dlCta" style="margin-top:1.4rem">Chcem podobný projekt</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- ===== SLUŽBY: rozbaliteľný zoznam (natívny prvok <details>) ===== -->
+<section id="sluzby">
+  <div class="wrap">
+    <div class="sec-head"><h2>Čo pre vás urobím</h2></div>
+    <div class="svc">
+      <details open><summary>Logo a vizuálna identita</summary><p>Od prieskumu a konceptu po manuál značky. Dostanete logo vo všetkých formátoch, farby, typografiu a pravidlá použitia.</p></details>
+      <details><summary>Plagáty a tlačoviny</summary><p>Plagáty, katalógy, vizitky a obaly pripravené do tlače, vrátane komunikácie s tlačiarňou.</p></details>
+      <details><summary>Web a digitálny dizajn</summary><p>Návrhy webov a sociálnych sietí v Figme, pripravené na odovzdanie vývojárom.</p></details>
+      <details><summary>3D vizuály a motion</summary><p>3D modely, vizualizácie produktov a krátke animácie, ktoré dopĺňajú značku.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCES: karty krokov (obsah z poľa "steps" v script.js) ===== 
+<section id="proces">
+  <div class="wrap">
+    <div class="sec-head"><h2>Ako spolupracujeme</h2></div>
+    <div class="steps">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="panel" role="tabpanel" id="panel">
+        <div><h3 id="pT"></h3><p class="lead" id="pP"></p><div class="bar-t"><i id="pBar"></i></div></div>-->
+        <!-- OBRÁZOK: ukážka k procesu
+        <div class="ph"><span>Ukážka</span><img src="images/proces.jpg" alt="Ukážka procesu" onerror="this.remove()"></div>
+      </div>
+    </div>
+  </div>
+</section>
+ -->
+<!-- ===== O MNE: fotka, text, animované štatistiky (data-to = cieľové číslo) ===== 
+<section id="o-mne">
+  <div class="wrap about">-->
+    <!-- OBRÁZOK: fotka dizajnéra 
+    <div class="ph" style="aspect-ratio:1"><span>Fotka dizajnéra</span><img src="images/ja.jpg" alt="Nina Rusnáková" onerror="this.remove()"></div>
+    <div>
+      <h2>Dizajn, ktorý rieši problém, nie len vyzerá dobre.</h2>
+      <p class="lead">Krátky odsek o tebe: kde si študoval, s kým pracuješ a čo ťa baví. Dva až tri vety stačia.</p>
+      <div class="stats" id="stats">
+        <div class="stat"><b data-to="8">0</b><span>rokov praxe</span></div>
+        <div class="stat"><b data-to="64">0</b><span>dokončených projektov</span></div>
+        <div class="stat"><b data-to="23">0</b><span>stálych klientov</span></div>
+      </div>
+      <div class="tools-list"><span>Illustrator</span><span>Photoshop</span><span>InDesign</span><span>Figma</span><span>After Effects</span></div>
+    </div>
+  </div>
+</section>
+-->
+<!-- ===== KONTAKT: kontaktné údaje (e-mail a telefón sa menia priamo tu, v odkazoch nižšie) ===== -->
+<section id="kontakt">
+  <div class="wrap contact">
+    <div>
+      <h2>Poďme sa porozprávať o vašom projekte.</h2>
+      <p class="lead">Napíšte alebo zavolajte, ozvem sa čo najskôr.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:ninirusnakova@gmail.com"><span>E-mail</span>ninirusnakova@gmail.com</a>
+      <a href="tel:+421915113240"><span>Telefón</span>+421 915 113 240</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== PÄTA ===== -->
+<footer><div class="wrap"><span>© 2026 Nina Rusnáková</span><span></span></div></footer>
+<!-- Tlačidlo "späť hore" (zobrazí sa po odscrollovaní) -->
+<button class="tool" id="top" aria-label="Späť hore">Hore</button>
+
+<!-- Všetka logika je v súbore script.js -->
+<script src="script.js" defer></script>
+</body>
+</html>
